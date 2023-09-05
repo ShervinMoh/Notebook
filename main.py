@@ -44,14 +44,18 @@ menu = input("""What do you whant ?
              If you need remove data, type 'remove data'
              If you need edit data, type 'edit data'\n""")
 
-# Added input for get values from user
-num_entries = int(input("Enter the number of entries you want to add: "))
+if menu == "add data":
+    # Added input for get values from user
+    num_entries = int(input("Enter the number of entries you want to add: "))
 
-for i in range(num_entries):
-    title = input("Enter the entry title: ")
-    user_text = input("Enter the user text: ")
-    notebook.add_entry(i, title, user_text)
+    for i in range(num_entries):
+        title = input("Enter the entry title: ")
+        user_text = input("Enter the user text: ")
+        notebook.add_entry(i, title, user_text)
 
-# Execute the code
-notebook.save_to_json("savedata.json")
-notebook.display_entries()
+    # Execute the code
+    notebook.save_to_json("savedata.json")
+    notebook.display_entries()
+
+else :
+    print("Check your command you chosen")
