@@ -37,3 +37,8 @@ notebook = Notebook()
 # Added input for get values from user
 title = input("Enter the entry title: ")
 user_text = input("Enter the user text: ")
+
+# Execute the code
+notebook.add_entry(title, user_text)
+notebook.save_to_json("savedata.json")
+notebook.display_entries()
