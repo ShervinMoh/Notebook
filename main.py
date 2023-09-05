@@ -1,4 +1,5 @@
-import json 
+import json
+from datetime import datetime
 
 # Adde Notebook class
 class Notebook:
@@ -8,9 +9,10 @@ class Notebook:
     # We create a dictionary that stores the titles and text inside itself
     def add_entry(self, ID, title, user_text):
         entry = {
-            'ID' : ID,
+            'ID': ID,
             'title': title,
-            'user_text': user_text
+            'user_text': user_text,
+            'date': datetime.now().isoformat()
         }
         self.entries.append(entry)
 
