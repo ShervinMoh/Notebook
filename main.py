@@ -23,3 +23,11 @@ class Notebook:
         if not self.entries:
             print("No entries found!")
             return
+
+        # Create for loop for print title and text into IDLE
+        for entry in self.entries:
+            title = entry['title']
+            user_text = entry['user_text']
+            print("Title:", title)
+            print("User Text:", user_text)
+            print()
