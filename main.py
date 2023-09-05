@@ -23,10 +23,6 @@ class Notebook:
 
     # Display in IDLE what user add into notebook
     def display_entries(self):
-        if not self.entries:
-            print("No entries found!")
-            return
-
         # Create for loop for print title and text into IDLE
         for entry in self.entries:
             user_id = entry['ID']
@@ -39,13 +35,13 @@ class Notebook:
 
 notebook = Notebook()
 
-menu = input("""What do you whant ? 
-             If you need add data, type 'add data'
-             If you need remove data, type 'remove data'
-             If you need edit data, type 'edit data'\n""")
+menu = input("""What do you want? 
+            If you need to add data, type 'add data'
+            If you need to remove data, type 'remove data'
+            If you need to edit data, type 'edit data'\n""")
 
 if menu == "add data":
-    # Added input for get values from user
+    # Added input for getting values from the user
     num_entries = int(input("Enter the number of entries you want to add: "))
 
     for i in range(num_entries):
@@ -56,6 +52,6 @@ if menu == "add data":
     # Execute the code
     notebook.save_to_json("savedata.json")
     notebook.display_entries()
-
-else :
-    print("Check your command you chosen")
+        
+else:
+    print("Check the command you have chosen")
