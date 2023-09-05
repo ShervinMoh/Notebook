@@ -39,6 +39,11 @@ class Notebook:
 
 notebook = Notebook()
 
+menu = input("""What do you whant ? 
+             If you need add data, type 'add data'
+             If you need remove data, type 'remove data'
+             If you need edit data, type 'edit data'\n""")
+
 # Added input for get values from user
 num_entries = int(input("Enter the number of entries you want to add: "))
 
