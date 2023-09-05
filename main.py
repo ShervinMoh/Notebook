@@ -17,3 +17,9 @@ class Notebook:
     def save_to_json(self, filename):
         with open(filename, 'w') as json_file:
             json.dump(self.entries, json_file)
+
+    # Display in IDLE what user add into notebook
+    def display_entries(self):
+        if not self.entries:
+            print("No entries found!")
+            return
