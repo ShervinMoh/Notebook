@@ -6,8 +6,9 @@ class Notebook:
         self.entries = []
 
     # We create a dictionary that stores the titles and text inside itself
-    def add_entry(self, title, user_text):
+    def add_entry(self, ID, title, user_text):
         entry = {
+            'ID' : ID,
             'title': title,
             'user_text': user_text
         }
@@ -40,7 +41,7 @@ num_entries = int(input("Enter the number of entries you want to add: "))
 for i in range(num_entries):
     title = input("Enter the entry title: ")
     user_text = input("Enter the user text: ")
-    notebook.add_entry(title, user_text)
+    notebook.add_entry(i, title, user_text)
 
 # Execute the code
 notebook.save_to_json("savedata.json")
