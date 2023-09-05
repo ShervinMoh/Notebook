@@ -27,8 +27,10 @@ class Notebook:
 
         # Create for loop for print title and text into IDLE
         for entry in self.entries:
+            user_id = entry['ID']
             title = entry['title']
             user_text = entry['user_text']
+            print("ID:", user_id)
             print("Title:", title)
             print("User Text:", user_text)
             print()
