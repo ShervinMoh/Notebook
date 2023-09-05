@@ -31,3 +31,9 @@ class Notebook:
             print("Title:", title)
             print("User Text:", user_text)
             print()
+
+notebook = Notebook()
+
+# Added input for get values from user
+title = input("Enter the entry title: ")
+user_text = input("Enter the user text: ")
