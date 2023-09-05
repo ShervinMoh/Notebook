@@ -12,3 +12,8 @@ class Notebook:
             'user_text': user_text
         }
         self.entries.append(entry)
+
+    # We create this  function for save datas into json file
+    def save_to_json(self, filename):
+        with open(filename, 'w') as json_file:
+            json.dump(self.entries, json_file)
