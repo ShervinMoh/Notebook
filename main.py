@@ -21,6 +21,13 @@ class Notebook:
         with open(filename, 'w') as json_file:
             json.dump(self.entries, json_file)
 
+    # Clear notebook
+    def clear_all(self):
+        for entry in self.entries :
+            self.entries.remove(entry)
+        print("Notebook has been cleared") 
+        return 
+
     # Display in IDLE what user add into notebook
     def display_entries(self):
         # Create for loop for print title and text into IDLE
@@ -50,6 +57,11 @@ if menu == "add data":
         notebook.add_entry(i, title, user_text)
 
     # Execute the code
+    notebook.save_to_json("savedata.json")
+    notebook.display_entries()
+
+elif menu == "remove data":
+    notebook.clear_all()
     notebook.save_to_json("savedata.json")
     notebook.display_entries()
         
