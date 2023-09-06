@@ -23,14 +23,12 @@ class Notebook:
 
     # Clear notebook
     def clear_all(self):
-        for entry in self.entries :
+        for entry in self.entries:
             self.entries.remove(entry)
         print("Notebook has been cleared") 
-        return 
 
-    # Display in IDLE what user add into notebook
+    # Display entries
     def display_entries(self):
-        # Create for loop for print title and text into IDLE
         for entry in self.entries:
             user_id = entry['ID']
             title = entry['title']
@@ -44,8 +42,8 @@ notebook = Notebook()
 
 menu = input("""What do you want? 
             If you need to add data, type 'add data'
-            If you need to remove data, type 'remove data'
-            If you need to edit data, type 'edit data'\n""")
+            If you need to edit data, type 'edit data'
+            If you need to clear notebook, type 'clear'\n""")
 
 if menu == "add data":
     # Added input for getting values from the user
@@ -60,10 +58,10 @@ if menu == "add data":
     notebook.save_to_json("savedata.json")
     notebook.display_entries()
 
-elif menu == "remove data":
+elif menu == "clear":
     notebook.clear_all()
     notebook.save_to_json("savedata.json")
     notebook.display_entries()
-        
+
 else:
     print("Check the command you have chosen")
