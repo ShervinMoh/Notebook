@@ -16,17 +16,6 @@ class Notebook:
         }
         self.entries.append(entry)
 
-    # We create this  function for save datas into json file
-    def save_to_json(self, filename):
-        with open(filename, 'w') as json_file:
-            json.dump(self.entries, json_file)
-
-    # Clear notebook
-    def clear_all(self):
-        for entry in self.entries:
-            self.entries.remove(entry)
-        print("Notebook has been cleared") 
-
     # Display entries
     def display_entries(self):
         for entry in self.entries:
@@ -37,6 +26,17 @@ class Notebook:
             print("Title:", title)
             print("User Text:", user_text)
             print()
+
+    # We create this  function for save datas into json file
+    def save_to_json(self, filename):
+        with open(filename, 'w') as json_file:
+            json.dump(self.entries, json_file)
+
+    # Clear notebook
+    def clear_all(self):
+        for entry in self.entries:
+            self.entries.remove(entry)
+        print("Notebook has been cleared") 
 
 notebook = Notebook()
 
