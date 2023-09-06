@@ -42,7 +42,6 @@ notebook = Notebook()
 
 menu = input("""What do you want? 
             If you need to add data, type 'add data'
-            If you need to edit data, type 'edit data'
             If you need to clear notebook, type 'clear'\n""")
 
 if menu == "add data":
