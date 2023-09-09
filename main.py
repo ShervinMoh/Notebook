@@ -52,3 +52,15 @@ class Notebook:
         self.entries.append(entry)
 
 notebook = Notebook()
+
+'''Code execution'''
+if __name__ == '__main__':
+    '''Set command'''
+    menu = input("What do you want? If you need to add data, type 'add data': \n")
+    
+    if menu == "add data":
+        repository = Repository()
+        AddCommand(repository)
+    
+    else:
+        print("This command does not exist!!!")
