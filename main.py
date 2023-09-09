@@ -28,6 +28,13 @@ class Repository:
         with open(filename, 'w') as json_file:
             json.dump(self.entries, json_file)
 
+    def remove_entry(self, entry_id):
+        for entry in self.entries:
+            if str(entry_id) in entry:
+                self.entries.remove(entry)
+                return True
+        return False
+
 '''The list in class Repository contains the input data. This list is stored in the json file. Basically, this list works as DATABASE'''
 class JSON:
     def __init__(self, repository, filename):
