@@ -49,7 +49,7 @@ class AddCommand:
         }
         self.repository.entries.append(notes)
         print(self.repository.entries)
-        JSON(self.repository, "savedata.json")
+        JSON(self.repository, "savedata.json").save()
 
 '''Code execution'''
 if __name__ == '__main__':
