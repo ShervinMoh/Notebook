@@ -30,6 +30,9 @@ class JSON:
     def save(self):
         self.repository.save_to_json(self.filename)
 
+    def load(self):
+        self.repository.load_from_json(self.filename)
+
 '''UIser can added data into Notebook with this class'''
 class AddCommand:
     def __init__(self, repository):
