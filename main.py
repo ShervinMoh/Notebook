@@ -56,9 +56,10 @@ if __name__ == '__main__':
     '''Set command'''
     menu = input("What do you want? If you need to add data, type 'add data': \n")
     
+    repository = Repository()
+    JSON(repository, "savedata.json").load()  # Load data from JSON file
+    
     if menu == "add data":
-        repository = Repository()
-        JSON(repository, "savedata.json").load()  # Load data from JSON file
         AddCommand(repository)
     
     else:
