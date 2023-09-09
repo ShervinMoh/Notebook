@@ -16,17 +16,6 @@ class Notebook:
         }
         self.entries.append(entry)
 
-    # Display entries
-    def display_entries(self):
-        for entry in self.entries:
-            user_id = entry['ID']
-            title = entry['title']
-            user_text = entry['user_text']
-            print("ID:", user_id)
-            print("Title:", title)
-            print("User Text:", user_text)
-            print()
-
     # We create this  function for save datas into json file
     def save_to_json(self, filename):
         with open(filename, 'w') as json_file:
