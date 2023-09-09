@@ -5,8 +5,15 @@ from datetime import datetime
 class Note:
     def __init__(self):
         self.user_id = 0
-        self.title = None
-        self.user_test = None
+        self.title = input("Give me title\n")
+        self.user_test = input("Give me text\n")
+        self.notes = {
+            self.user_id: {
+                'title': self.title,
+                'user_text': self.user_test,
+                'date': datetime.now().isoformat()
+            }
+        }
 
 '''The input data is put into the list in this class'''
 class Repository:
@@ -38,16 +45,8 @@ class AddCommand:
     def __init__(self, repository):
         self.repository = repository
         self.note = Note()
-        self.note.title = input("Give me title\n")
-        self.note.user_test = input("Give me text\n")
-        notes = {
-            self.note.user_id: {
-                'title': self.note.title,
-                'user_text': self.note.user_test,
-                'date': datetime.now().isoformat()
-            }
-        }
-        self.repository.entries.append(notes)
+
+        self.repository.entries.append(self.note.notes)
         print(self.repository.entries)
         JSON(self.repository, "savedata.json").save()
 
@@ -58,7 +57,7 @@ if __name__ == '__main__':
     
     repository = Repository()
     JSON(repository, "savedata.json").load()  # Load data from JSON file
-    
+
     if menu == "add data":
         AddCommand(repository)
     
