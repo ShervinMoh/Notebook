@@ -10,9 +10,6 @@ class Note:
 
 # Adde Notebook class
 class Notebook:
-    def __init__(self):
-        self.entries = []
-
     # We create a dictionary that stores the titles and text inside itself
     def add_entry(self, ID, title, user_text):
         entry = {
