@@ -21,6 +21,24 @@ class JSON:
         with open(filename, 'w') as json_file:
             json.dump(self.repository.entries, json_file)
 
+'''UIser can added data into Notebook with this class'''
+class AddCommand:
+    def __init__(self, repository):
+        self.repository = repository
+        self.note = Note()
+        self.note.title = input("Give me title\n")
+        self.note.user_test = input("Give me text\n")
+        notes = {
+            self.note.user_id: {
+                'title': self.note.title,
+                'user_text': self.note.user_test,
+                'date': datetime.now().isoformat()
+            }
+        }
+        self.repository.entries.append(notes)
+        print(self.repository.entries)
+        JSON(self.repository, "savedata.json")
+
 # Adde Notebook class
 class Notebook:
     # We create a dictionary that stores the titles and text inside itself
