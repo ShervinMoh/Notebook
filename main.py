@@ -8,6 +8,11 @@ class Note:
         self.title = None
         self.user_test = None
 
+'''The input data is put into the list in this class'''
+class Repository:
+    def __init__(self):
+        self.entries = []
+
 # Adde Notebook class
 class Notebook:
     # We create a dictionary that stores the titles and text inside itself
