@@ -1,6 +1,13 @@
 import json
 from datetime import datetime
 
+'''This class is created to initialize the data'''
+class Note:
+    def __init__(self):
+        self.user_id = 0
+        self.title = None
+        self.user_test = None
+
 # Adde Notebook class
 class Notebook:
     def __init__(self):
