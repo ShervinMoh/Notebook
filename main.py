@@ -13,6 +13,14 @@ class Repository:
     def __init__(self):
         self.entries = []
 
+'''The list in class Repository contains the input data. This list is stored in the json file. Basically, this list works as DATABASE'''
+class JSON:
+    def __init__(self, repository, filename):
+        self.repository = repository
+        self.filename = filename
+        with open(filename, 'w') as json_file:
+            json.dump(self.repository.entries, json_file)
+
 # Adde Notebook class
 class Notebook:
     # We create a dictionary that stores the titles and text inside itself
