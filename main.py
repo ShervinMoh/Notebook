@@ -57,6 +57,19 @@ class AddCommand:
         print(self.repository.entries)
         JSON(self.repository, "savedata.json").save()
 
+'''User can remove data from Notebook with this class'''
+class RemoveCommand:
+    def __init__(self, repository):
+        self.repository = repository
+        self.entry_id = input("Enter the ID of the entry you want to remove: ")
+
+        if self.repository.remove_entry(self.entry_id):
+            print("Entry removed successfully!")
+        else:
+            print("Entry not found!")
+
+        JSON(self.repository, "savedata.json").save()
+
 '''Code execution'''
 if __name__ == '__main__':
     '''Set command'''
