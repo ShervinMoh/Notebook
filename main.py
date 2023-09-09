@@ -80,6 +80,9 @@ if __name__ == '__main__':
 
     if options == "add data":
         AddCommand(repository)
+
+    elif options == "remove data":
+        RemoveCommand(repository)
     
     else:
         print("This command does not exist!!!")
