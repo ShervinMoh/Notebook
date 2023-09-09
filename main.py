@@ -26,8 +26,9 @@ class JSON:
     def __init__(self, repository, filename):
         self.repository = repository
         self.filename = filename
-        with open(filename, 'w') as json_file:
-            json.dump(self.repository.entries, json_file)
+
+    def save(self):
+        self.repository.save_to_json(self.filename)
 
 '''UIser can added data into Notebook with this class'''
 class AddCommand:
