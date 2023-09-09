@@ -13,6 +13,10 @@ class Repository:
     def __init__(self):
         self.entries = []
 
+    def load_from_json(self, filename):
+        with open(filename, 'r') as json_file:
+            self.entries = json.load(json_file)
+
 '''The list in class Repository contains the input data. This list is stored in the json file. Basically, this list works as DATABASE'''
 class JSON:
     def __init__(self, repository, filename):
