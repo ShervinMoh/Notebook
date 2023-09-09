@@ -39,20 +39,6 @@ class AddCommand:
         print(self.repository.entries)
         JSON(self.repository, "savedata.json")
 
-# Adde Notebook class
-class Notebook:
-    # We create a dictionary that stores the titles and text inside itself
-    def add_entry(self, ID, title, user_text):
-        entry = {
-            'ID': ID,
-            'title': title,
-            'user_text': user_text,
-            'date': datetime.now().isoformat()
-        }
-        self.entries.append(entry)
-
-notebook = Notebook()
-
 '''Code execution'''
 if __name__ == '__main__':
     '''Set command'''
