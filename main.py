@@ -114,6 +114,9 @@ if __name__ == '__main__':
 
     elif options == "edit data":
         EditCommand(repository)
+
+    elif options == "view data":
+        ViewCommand(repository)
     
     else:
         print("This command does not exist!!!")
