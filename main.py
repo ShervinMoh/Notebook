@@ -107,7 +107,11 @@ class ViewCommand:
 '''Code execution'''
 if __name__ == '__main__':
     '''Set command'''
-    options = input("What do you want? If you need to add data, type 'add data': \n")
+    options = input("""What do you want? 
+    If you need to Add data, type 'add data'
+    If you need to Remove data, type 'remove data'
+    If you need to Edit data, type 'edit data'
+    If you need to View data, type 'view data'\n""")
     
     repository = Repository()
     JSON(repository, "savedata.json").load()  # Load data from JSON file
