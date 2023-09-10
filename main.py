@@ -92,6 +92,12 @@ class EditCommand:
 
         JSON(self.repository, "savedata.json").save()
 
+class ViewCommand:
+    def __init__(self, repository):
+        self.repository = repository
+
+        print(self.repository.entries)
+
 '''Code execution'''
 if __name__ == '__main__':
     '''Set command'''
