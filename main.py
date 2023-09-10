@@ -78,6 +78,20 @@ class RemoveCommand:
 
         JSON(self.repository, "savedata.json").save()
 
+class EditCommand:
+    def __init__(self, repository):
+        self.repository = repository
+        self.entry_id = input("Enter the ID of the entry you want to edit: ")
+        self.title = input("Enter the new title: ")
+        self.user_text = input("Enter the new user text: ")
+
+        if self.repository.edit_entry(self.entry_id, self.title, self.user_text):
+            print("Entry edited successfully!")
+        else:
+            print("Entry not found!")
+
+        JSON(self.repository, "savedata.json").save()
+
 '''Code execution'''
 if __name__ == '__main__':
     '''Set command'''
