@@ -105,6 +105,9 @@ if __name__ == '__main__':
 
     elif options == "remove data":
         RemoveCommand(repository)
+
+    elif options == "edit data":
+        EditCommand(repository)
     
     else:
         print("This command does not exist!!!")
