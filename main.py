@@ -5,8 +5,8 @@ from datetime import datetime
 class Note:
     def __init__(self):
         self.user_id = 0
-        self.title = input("Give me title\n")
-        self.user_test = input("Give me text\n")
+        self.title = input("Please type your title\n")
+        self.user_test = input("Please type your text\n")
         self.notes = {
             self.user_id: {
                 'title': self.title,
