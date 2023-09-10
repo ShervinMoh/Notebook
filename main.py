@@ -15,19 +15,22 @@ class Note:
             }
         }
 
-'''The input data is put into the list in this class'''
+
 class Repository:
     def __init__(self):
         self.entries = []
 
+    '''This function loads the data inside the json file'''
     def load_from_json(self, filename):
         with open(filename, 'r') as json_file:
             self.entries = json.load(json_file)
 
+    '''This function saves the data in the json file'''
     def save_to_json(self, filename):
         with open(filename, 'w') as json_file:
             json.dump(self.entries, json_file)
 
+    '''This function deletes the data from the json file'''
     def remove_entry(self, entry_id):
         for entry in self.entries:
             if str(entry_id) in entry:
@@ -35,6 +38,7 @@ class Repository:
                 return True
         return False
     
+    '''This function edits the data inside the Jason file'''
     def edit_entry(self, entry_id, title, user_text):
         for entry in self.entries:
             if str(entry_id) in entry:
@@ -55,7 +59,7 @@ class JSON:
     def load(self):
         self.repository.load_from_json(self.filename)
 
-'''UIser can added data into Notebook with this class'''
+'''User can added data into Notebook with this class'''
 class AddCommand:
     def __init__(self, repository):
         self.repository = repository
@@ -65,7 +69,7 @@ class AddCommand:
         print(self.repository.entries)
         JSON(self.repository, "savedata.json").save()
 
-'''User can remove data from Notebook with this class'''
+'''This class calls function "remove entry" from class Repository and the data is deleted'''
 class RemoveCommand:
     def __init__(self, repository):
         self.repository = repository
@@ -78,6 +82,7 @@ class RemoveCommand:
 
         JSON(self.repository, "savedata.json").save()
 
+'''This class calls function "edit entry" from class Repositroy and the data is edited'''
 class EditCommand:
     def __init__(self, repository):
         self.repository = repository
@@ -92,6 +97,7 @@ class EditCommand:
 
         JSON(self.repository, "savedata.json").save()
 
+'''This class is created to display the data inside the json file'''
 class ViewCommand:
     def __init__(self, repository):
         self.repository = repository
