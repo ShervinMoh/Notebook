@@ -34,6 +34,14 @@ class Repository:
                 self.entries.remove(entry)
                 return True
         return False
+    
+    def edit_entry(self, entry_id, title, user_text):
+        for entry in self.entries:
+            if str(entry_id) in entry:
+                entry[str(entry_id)]['title'] = title
+                entry[str(entry_id)]['user_text'] = user_text
+                return True
+        return False
 
 '''The list in class Repository contains the input data. This list is stored in the json file. Basically, this list works as DATABASE'''
 class JSON:
