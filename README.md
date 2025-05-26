@@ -240,3 +240,6 @@ This frontend provides a **smooth, interactive experience** for managing notes, 
 ✔ **Live search & filtering**  
 ✔ **Error handling & feedback**  
 ✔ **Responsive design**  
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
