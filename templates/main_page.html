@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Taking Application</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-button {
+            padding: 12px 24px;
+            background-color: #e0e0e0;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+            transition: all 0.3s;
+            color: #444;
+        }
+        .tab-button:hover {
+            background-color: #d0d0d0;
+        }
+        .tab-button.active {
+            background-color: #3498db;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+        .note {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        .note-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        .note-text {
+            margin-bottom: 10px;
+            white-space: pre-wrap;
+        }
+        .note-date {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        .note-id {
+            font-size: 12px;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .notes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .refresh-btn {
+            background-color: #2ecc71;
+        }
+        .refresh-btn:hover {
+            background-color: #27ae60;
+        }
+        .search-box {
+            margin-bottom: 15px;
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .danger-btn {
+            background-color: #e74c3c;
+        }
+        .danger-btn:hover {
+            background-color: #c0392b;
+        }
+        .success-btn {
+            background-color: #2ecc71;
+        }
+        .success-btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <h1>Note Taking Application</h1>
+    
+    <div class="container">
+        <div class="tab-buttons">
+            <button class="tab-button active" onclick="openTab('add')">Add Note</button>
+            <button class="tab-button" onclick="openTab('view')">View Notes</button>
+            <button class="tab-button" onclick="openTab('edit')">Edit Note</button>
+            <button class="tab-button" onclick="openTab('remove')">Remove Note</button>
+        </div>
+        
+        <div id="add" class="tab-content active">
+            <h2>Add New Note</h2>
+            <input type="text" id="note-title" placeholder="Note Title">
+            <textarea id="note-text" rows="5" placeholder="Your note text here..."></textarea>
+            <div class="button-group">
+                <button class="success-btn" onclick="addNote()">Save Note</button>
+            </div>
+        </div>
+        
+        <div id="view" class="tab-content">
+            <div class="notes-header">
+                <h2>Your Notes</h2>
+                <button class="refresh-btn" onclick="displayNotes()">
+                    <span>↻ Refresh Notes</span>
+                </button>
+            </div>
+            <div class="search-box">
+                <input type="text" id="search-notes" placeholder="Search notes..." onkeyup="searchNotes()">
+            </div>
+            <div id="notes-list">
+                <!-- Notes will be displayed here -->
+            </div>
+        </div>
+        
+        <div id="edit" class="tab-content">
+            <h2>Edit Note</h2>
+            <input type="text" id="edit-id" placeholder="Note ID">
+            <input type="text" id="edit-title" placeholder="New Title">
+            <textarea id="edit-text" rows="5" placeholder="New text..."></textarea>
+            <div class="button-group">
+                <button class="success-btn" onclick="editNote()">Update Note</button>
+            </div>
+        </div>
+        
+        <div id="remove" class="tab-content">
+            <h2>Remove Note</h2>
+            <input type="text" id="remove-id" placeholder="Note ID to remove">
+            <div class="button-group">
+                <button class="danger-btn" onclick="removeNote()">Remove Note</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allNotes = []; // Store all notes for search functionality
+
+        function openTab(tabName) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            const tabButtons = document.getElementsByClassName('tab-button');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+            
+            if (tabName === 'view') {
+                displayNotes();
+            }
+        }
+
+        async function addNote() {
+            const title = document.getElementById('note-title').value;
+            const text = document.getElementById('note-text').value;
+            
+            if (!title || !text) {
+                alert('Please fill in both title and text fields.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/add_note', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ title, text })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Note added successfully!');
+                    document.getElementById('note-title').value = '';
+                    document.getElementById('note-text').value = '';
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to add note');
+            }
+        }
+
+        async function displayNotes() {
+            const notesList = document.getElementById('notes-list');
+            notesList.innerHTML = '<p>Loading notes...</p>';
+
+            try {
+                const response = await fetch('/get_notes');
+                const data = await response.json();
+                
+                allNotes = data.notes; // Store all notes for search functionality
+                
+                if (data.notes.length === 0) {
+                    notesList.innerHTML = '<p>No notes available.</p>';
+                    return;
+                }
+                
+                renderNotes(data.notes);
+            } catch (error) {
+                console.error('Error:', error);
+                notesList.innerHTML = '<p>Failed to load notes</p>';
+            }
+        }
+
+        function renderNotes(notes) {
+            const notesList = document.getElementById('notes-list');
+            notesList.innerHTML = '';
+            
+            if (notes.length === 0) {
+                notesList.innerHTML = '<p>No notes found.</p>';
+                return;
+            }
+            
+            // Sort notes by date (newest first)
+            notes.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            notes.forEach(note => {
+                const noteElement = document.createElement('div');
+                noteElement.className = 'note';
+                noteElement.innerHTML = `
+                    <div class="note-id">ID: ${note.id}</div>
+                    <div class="note-title">${note.title}</div>
+                    <div class="note-text">${note.text}</div>
+                    <div class="note-date">Created: ${new Date(note.date).toLocaleString()}</div>
+                `;
+                notesList.appendChild(noteElement);
+            });
+        }
+
+        function searchNotes() {
+            const searchTerm = document.getElementById('search-notes').value.toLowerCase();
+            if (!searchTerm) {
+                renderNotes(allNotes);
+                return;
+            }
+            
+            const filteredNotes = allNotes.filter(note => 
+                note.title.toLowerCase().includes(searchTerm) || 
+                note.text.toLowerCase().includes(searchTerm) ||
+                note.id.toLowerCase().includes(searchTerm)
+            );
+            
+            renderNotes(filteredNotes);
+        }
+
+        async function editNote() {
+            const id = document.getElementById('edit-id').value;
+            const title = document.getElementById('edit-title').value;
+            const text = document.getElementById('edit-text').value;
+            
+            if (!id) {
+                alert('Please enter a note ID.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/edit_note', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id, title, text })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Note updated successfully!');
+                    document.getElementById('edit-id').value = '';
+                    document.getElementById('edit-title').value = '';
+                    document.getElementById('edit-text').value = '';
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to update note');
+            }
+        }
+
+        async function removeNote() {
+            const id = document.getElementById('remove-id').value;
+            
+            if (!id) {
+                alert('Please enter a note ID.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/remove_note', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Note removed successfully!');
+                    document.getElementById('remove-id').value = '';
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to remove note');
+            }
+        }
+
+        // Initialize tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabName = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    openTab(tabName);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
